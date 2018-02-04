@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var exphbs = require('express-handlebars');
+global.Tether = require('tether');
 
 var index = require('./routes/index.js');
 var users = require('./routes/users.js');
