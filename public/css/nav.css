@@ -34,6 +34,15 @@
 	position: absolute;
 
 }
+.bg-list ul{
+	padding: 0;
+	white-space: nowrap;
+	margin-bottom: 0;
+	display: flex;
+}
+.bg-controller ul li{
+	cursor: pointer;
+}
 .bg-list li{
 	list-style: none;
 	display: inline-block;
@@ -43,22 +52,12 @@
 .bg-list li img{
 	width: 1903px;
 }
-.bg-list ul{
-	padding: 0;
-	white-space: nowrap;
-	margin-bottom: 0;
-	display: flex;
-}
 
 .bg-controller{
 	height: 30px;
 	position: relative;
 	padding-left: 20px;
 }
-.bg-controller ul li{
-	cursor: pointer;
-}
-
 .pager{
 	text-align: left;
 }
