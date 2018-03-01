@@ -68,3 +68,7 @@ input{
 .customempty{
 	color: #f0ad4e;
 }
+
+body{
+	padding-top: 100px;
+}

@@ -11,9 +11,9 @@ var users = require('./routes/users.js');
 var app = express();
 
 
-app.set('views',  path.join(__dirname, 'views'));
 
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.set('views',  path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 //set up static folder
 app.use(express.static(path.join(__dirname, 'public')));

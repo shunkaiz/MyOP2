@@ -52,7 +52,6 @@
 .bg-list li img{
 	width: 1903px;
 }
-
 .bg-controller{
 	height: 30px;
 	position: relative;
@@ -61,12 +60,23 @@
 .pager{
 	text-align: left;
 }
-.sign-button{
+.logButton{
 	margin: 10px 10px;
+	padding: 0;
+}
+.logButton a {
+	width: 72px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;	
+	color: black;
+	font-size: 12px;
+    line-height: 1.5;
 }
 #wel{
 	display: none;
-
 }
 .navbar-right .dropdown{
 	display: none;
