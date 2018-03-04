@@ -96,35 +96,35 @@ transition of ycode block
 		}
 	});
 
-	$("#signupSubmit").click(function(event){
-		/*
-		$.ajax({type:'POST', url: 'localhost:8080/login/login.php', data:{username: $("#username").val(), password: $("#password").val()}, success:function(response){
-			$("#resText").html(response);
-			}
-		});
-		*/
-		var passed = true;
-		event.preventDefault();
-		$(".inputContent").each(function(){
-			if(!$(this).children("glyIcon").last().hasClass('customtrue')){
-				passed = false;
-			var $name = $(this).find("input").prop("name");
-				alert("Please look at the "+$name+" part.");
-				return false;
-			}
-		});
+	// $("#signupSubmit").click(function(event){
+	// 	/*
+	// 	$.ajax({type:'POST', url: 'localhost:8080/login/login.php', data:{username: $("#username").val(), password: $("#password").val()}, success:function(response){
+	// 		$("#resText").html(response);
+	// 		}
+	// 	});
+	// 	*/
+	// 	var passed = true;
+	// 	event.preventDefault();
+	// 	$(".inputContent").each(function(){
+	// 		if(!$(this).children("glyIcon").last().hasClass('customtrue')){
+	// 			passed = false;
+	// 		var $name = $(this).find("input").prop("name");
+	// 			alert("Please look at the "+$name+" part.");
+	// 			return false;
+	// 		}
+	// 	});
 		
-		/* php post method*/
-   	if(passed){		
-   			var $x = $("#uname").val();
-   			var $z = $("#email").val();
-   			var $y = $("#password").val();
-   			console.log($x +" "+ $z+" "+$y);
-   			$.post('../myop/php/db_connect.php', $("#form1").serialize(), function(response) {
-   				console.log(response);
-   				$("#submit").parent().append("<span class='namen'>Submitted!</span>");
-   				$("#submit").siblings(".namen").delay("slow").fadeOut(200);
-   			});
-   	}
-	});	
+	// 	/* php post method*/
+ //   	if(passed){		
+ //   			var $x = $("#uname").val();
+ //   			var $z = $("#email").val();
+ //   			var $y = $("#password").val();
+ //   			console.log($x +" "+ $z+" "+$y);
+ //   			$.post('../myop/php/db_connect.php', $("#form1").serialize(), function(response) {
+ //   				console.log(response);
+ //   				$("#submit").parent().append("<span class='namen'>Submitted!</span>");
+ //   				$("#submit").siblings(".namen").delay("slow").fadeOut(200);
+ //   			});
+ //   	}
+	// });	
 });

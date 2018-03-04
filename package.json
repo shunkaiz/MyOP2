@@ -4,11 +4,23 @@
   "description": "A anime website",
   "main": "op.js",
   "dependencies": {
-    "express": "^4.16.2",
-    "express-handlebars": "^3.0.0",
+    "express": "*",
+    "express-handlebars": "*",
     "handlebars": "^4.0.11",
     "path": "^0.12.7",
-    "tether": "^1.4.3"
+    "tether": "^1.4.3",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
   },
   "devDependencies": {},
   "scripts": {

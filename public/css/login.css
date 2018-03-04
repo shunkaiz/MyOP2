@@ -44,8 +44,8 @@ input{
 	padding: 9px 5px;
 }
 
-#submit{
-	display: inline-block;
+#signupSubmit{
+	float: right;
 }
 
 .customfalse{
