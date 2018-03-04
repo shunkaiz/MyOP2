@@ -1,38 +1,31 @@
-#form1 ul{
+#loginForm ul{
 	padding:20px 50px 0px 0px;
 }
-#form2 ul{
+#signupForm ul{
 	padding:20px 50px 0px 0px;
-}
-.zc-pbox{
-	width: 100%;
-	padding:120px 0;
-}
-.zc-inbox{
-	width: 70%;
-	margin: auto;	
 }
 
-.zc-iptbox{
-	list-style: none;
-	padding: 0;
+.inputContent{
 	margin-bottom: 12px;
-	text-align: right;
 	font-size: 15pt;
+	display: flex;
+	justify-content: center;
 }
-
+.inputInfo{
+	width: 200px;
+	margin-right: 20px;
+}
 .red{
 	color: #ff8650;
 }
 
-.ycode-box{
+.verifyBox{
 	width: 273px;
-	display: inline-block;
-	padding-right: 50%;
 	height: 48px;
+	display: block;
 }
 
-.t_val{
+.inputValue{
 	padding-left: 10px;
 	display: inline-block;
 	font-size: 14pt;
@@ -41,20 +34,16 @@
 	width: 273px;
 }
 
+.glyIcon{
+	width: 20px;
+	padding-top: 10px;
+	margin-left: 20px;
+}
+
 input{
 	padding: 9px 5px;
 }
-.submit{
-	display: inline-block;
-	margin-top: 20px;
-}
-.myModalTitle{
-	text-align: center;
-}
 
-#back{
-	float: left;
-}
 #submit{
 	display: inline-block;
 }

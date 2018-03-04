@@ -3,40 +3,35 @@
 	
     <div class="modal-content">
         <div class="modal-body">
-			<form id="form1">
+			<form id="loginForm">
 				<ul>
-					<li class="zc-iptbox">
-						<span class="label1"><span class="red">*</span>Username：</span>
-						<input name="username" id="uname" class="zc-ipt t_val" type="text" placeholder="请输入您的用户名" maxlength="20" style="" data-toggle="popover" data-placement="right" data-content="At least 6 chars">								
+					<li class="inputContent">
+						<div class="inputInfo"><span class="red">*</span>Username：</div>
+						<input name="username" id="loginUsername" class="inputValue" type="text"  maxlength="20" style="" data-toggle="popover" data-placement="right" data-content="At least 6 chars">
+						<div class="glyIcon"></div>								
 					</li>
-					<li class="zc-iptbox" id="emaili">
-						<span class="label1"><span class="red">*</span>E-mail：</span>
-						<input name="email" id="email" class="zc-ipt t_val" type="email" placeholder="请输入您的电子邮箱" maxlength="50"  data-toggle="popover" data-placement="right" data-content="Please enter your email in correct form">
+					<li class="inputContent" id="emaili">
+						<div class="inputInfo"><span class="red">*</span>E-mail：</div>
+						<input name="email" id="loginEmail" class="inputValue" type="email" maxlength="50"  data-toggle="popover" data-placement="right" data-content="Please enter your email in correct form">
+						<div class="glyIcon"></div>		
 					</li>
-					<li class="zc-iptbox" id="ycodeli">		
-						<span class="label1"><span class="red">*</span>Verify Code：</span>
-						<div class="ycode-box">
-							<div class="btn btn-success" id="v-email">Click Me</div>
-						</div>
-						<input name="ycode" id="ycode" class="zc-ipt t_val" type="text" placeholder="请输入4位邮箱验证码" maxlength="20"  data-toggle="popover"
-						data-placement="right" data-content="Please enter 4 digits">
-					</li>	
-					<li class="zc-iptbox" id="passwordli">		
-						<span class="label1"><span class="red">*</span>Password：</span>
-						<input name="psw" id="password" class="zc-ipt t_val" type="password" placeholder="建议6-18位数字、字母、符号的组合" maxlength="20" data-toggle="popover"
+					<li class="inputContent" id="passwordli">		
+						<div class="inputInfo"><span class="red">*</span>Password：</div>
+						<input name="psw" id="loginPassword" class="inputValue" type="password"  maxlength="20" data-toggle="popover"
 						data-placement="right" data-content="Make sure password fortmat is correct">
+						<div class="glyIcon"></div>		
 					</li>		
-					<li class="zc-iptbox">		
-						<span class="label1"><span class="red">*</span>Password：</span>
-						<input name="repsw" id="repsw" class="zc-ipt t_val" type="password" placeholder="再输一遍密码" maxlength="20" data-toggle="popover"
+					<li class="inputContent">		
+						<div class="inputInfo"><span class="red">*</span>Re-Password：</div>
+						<input name="repsw" id="loginRePassword" class="inputValue" type="password"  maxlength="20" data-toggle="popover"
 						data-placement="right" data-content="Please enter the password above">
+						<div class="glyIcon"></div>		
 					</li>					
 				</ul>
 				<br>					
 			</form>	            	
         </div>
         <div class="modal-footer">
-            <div type="button" class="btn btn-default" data-dismiss="modal">Back</div>
-            <div type="button" id="submit" class="btn btn-primary">Submit</div>
+            <div type="button" id="loginSubmit" class="btn btn-primary">Submit</div>
         </div>
     </div>
