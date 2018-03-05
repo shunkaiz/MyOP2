@@ -40,14 +40,6 @@
 	margin-left: 20px;
 }
 
-input{
-	padding: 9px 5px;
-}
-
-#signupSubmit{
-	float: right;
-}
-
 .customfalse{
 	color: #ac2925;
 }
@@ -58,6 +50,12 @@ input{
 	color: #f0ad4e;
 }
 
+input{
+	padding: 9px 5px;
+}
+
 body{
 	padding-top: 100px;
 }
+
+

@@ -15,8 +15,8 @@ $(function(){
 	});
 
 	$("#signupEmail").blur(function(event){
-	$value = $(this).val();
-	$(this).popover('hide');
+		$value = $(this).val();
+		$(this).popover('hide');
 		$(this).popover('hide');
 		if($(this).val() === ""){
 			$($(this).parent()).find(".glyIcon").attr('class', 'glyIcon glyphicon glyphicon-ban-circle customempty');
@@ -51,9 +51,8 @@ $(function(){
 		$(this).popover('hide');
 		if($(this).val() === ""){
 			$($(this).parent()).find(".glyIcon").attr('class', 'glyIcon glyphicon glyphicon-ban-circle customempty');
-		}
-		else{
-         $($(this).parent()).find(".glyIcon").attr('class', 'glyIcon glyphicon glyphicon-ok-circle customtrue');
+		}else{
+         	$($(this).parent()).find(".glyIcon").attr('class', 'glyIcon glyphicon glyphicon-ok-circle customtrue');
 		}	   			
 	}).keyup(function(){
 		$(this).triggerHandler("blur");
@@ -62,7 +61,7 @@ $(function(){
 	});
 
 	$("#repsw").blur(function(){	   			
-		$psw = $("#password").val();
+		$psw = $("#signupPassword").val();
 		$(this).popover('hide');
 		if($(this).val() ===""){
          $($(this).parent()).find(".glyIcon").attr('class', 'glyIcon glyphicon glyphicon-ban-circle customempty');
