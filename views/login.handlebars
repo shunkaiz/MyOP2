@@ -1,38 +1,26 @@
-
-
-	
-    <div class="modal-content">
-        <div class="modal-body">
-			<form id="loginForm" action="/login">
-				<ul>
-					<li class="inputContent">
-						<div class="inputInfo"><span class="red">*</span>Username：</div>
-						<input name="username" id="loginUsername" class="inputValue" type="text"  maxlength="20" style="" data-toggle="popover" data-placement="right" data-content="At least 6 chars">
-						<div class="glyIcon"></div>								
-					</li>
-					<li class="inputContent" id="emaili">
-						<div class="inputInfo"><span class="red">*</span>E-mail：</div>
-						<input name="email" id="loginEmail" class="inputValue" type="email" maxlength="50"  data-toggle="popover" data-placement="right" data-content="Please enter your email in correct form">
-						<div class="glyIcon"></div>		
-					</li>
-					<li class="inputContent" id="passwordli">		
-						<div class="inputInfo"><span class="red">*</span>Password：</div>
-						<input name="psw" id="loginPassword" class="inputValue" type="password"  maxlength="20" data-toggle="popover"
-						data-placement="right" data-content="Make sure password fortmat is correct">
-						<div class="glyIcon"></div>		
-					</li>		
-					<li class="inputContent">		
-						<div class="inputInfo"><span class="red">*</span>Re-Password：</div>
-						<input name="repsw" id="loginRePassword" class="inputValue" type="password"  maxlength="20" data-toggle="popover"
-						data-placement="right" data-content="Please enter the password above">
-						<div class="glyIcon"></div>		
-					</li>					
-				</ul>
-				 <div type="button" id="loginSubmit" class="btn btn-primary">Submit</div>
-				<br>					
-			</form>	            	
-        </div>
-        <div class="modal-footer">
-           
-        </div>
-    </div>
+<form id="loginForm" action="/users/login" method="Post">
+	<ul>
+		<li class="inputContent">
+			<div class="inputInfo">Username：</div>
+			<input name="username" id="loginUsername" class="inputValue" type="text"  maxlength="20" style="" data-toggle="popover" data-placement="right" data-content="At least 6 characters">
+			<div class="glyIcon"></div>								
+		</li>
+		<li class="inputContent">
+			<div class="inputInfo">E-mail：</div>
+			<input name="email" id="loginEmail" class="inputValue" type="email" maxlength="50"  data-toggle="popover" data-placement="right" data-content="Please enter your email in correct form">
+			<div class="glyIcon"></div>		
+		</li>
+		<li class="inputContent">		
+			<div class="inputInfo">Password：</div>
+			<input name="password" id="loginPassword" class="inputValue" type="password"  maxlength="20" data-toggle="popover" data-placement="right" data-content="Password cannot be empty">
+			<div class="glyIcon"></div>		
+		</li>		
+		<li class="inputContent">
+			<div class="inputInfo"></div>
+			<div class="verifyBox">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+			<div style="width: 40px"></div>		
+		</li>			
+	</ul>
+</form>	            	
