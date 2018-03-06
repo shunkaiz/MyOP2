@@ -18,7 +18,7 @@ router.post('/signup', function(req, res){
 	var email = req.body.email;
 	var username = req.body.username;
 	var password = req.body.password;
-	console.log(username);
+	//console.log(username);
 	// Validation
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
@@ -64,7 +64,7 @@ passport.use(new LocalStrategy(
   				return done(null, false, {message: 'Invalid password'});
   			}
   		});
-  		console.log(user);
+  		//console.log(user);
   	});
   }
 ));
@@ -80,8 +80,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-passport.authenticate('local', {successRedict:'/', failureRedirect:'/users/login',failureFlash:true}),
+passport.authenticate('local', {failureRedirect:'/users/login',failureFlash:true}),
 	function(req, res){
+		//console.log(req.user);
 		res.redirect('/');
 	});
 
