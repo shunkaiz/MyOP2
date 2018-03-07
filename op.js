@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express Session
 app.use(session({
     secret: 'secret',
+    cookie: {_expires : 60000},
     saveUninitialized: true,
     resave: true
 }));

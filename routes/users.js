@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../model/user');
+var nodemailer = require('nodemailer');
 
 
 router.get('/login', function(req, res){
@@ -13,7 +14,7 @@ router.get('/signup', function(req, res){
 	res.render('signup');
 });
 
-
+//signup part
 router.post('/signup', function(req, res){
 	var email = req.body.email;
 	var username = req.body.username;
@@ -49,6 +50,8 @@ router.post('/signup', function(req, res){
 	}
 });
 
+
+//login part
 passport.use(new LocalStrategy(
   function(username, password, done) {
   	User.getUserByUsername(username, function(err, user){
@@ -94,6 +97,49 @@ router.post('/logout', function(req, res){
 	res.redirect('/');
 });
 
+
+//verify mail 
+
+// create reusable transporter object using the default SMTP transport
+let smtpTransport = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+        user: 'shunkaiz1997@gmail.com', // generated ethereal user
+        pass: 'asdfg112' // generated ethereal password
+    }
+});
+
+
+
+
+
+
+router.get('/email', function(req, res){
+	var mailAddress = req.query.email;
+	console.log(mailAddress);
+	// setup email data with unicode symbols
+	let mailOptions = {
+	    from: '"Fred Foo 👻" <shunkaiz1997@gmail.com>', // sender address
+	    to: mailAddress, // list of receivers
+	    subject: 'Hello ✔', // Subject line
+	    text: 'Hello world?', // plain text body
+	    html: '<b>Hello world?</b>' // html body
+	};	
+	smtpTransport.sendMail(mailOptions, function(error, info){
+	    if (error) {
+	        return console.log(error);
+	    }
+	    console.log('Message sent: %s', info.messageId);
+	    // Preview only available when sending through an Ethereal account
+	    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+	    res.end('{"success" : "Updated Successfully", "status" : 200}');
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou... 
+	});
+	
+});
 
 module.exports = router;
 

@@ -25,6 +25,15 @@
 	display: block;
 }
 
+.mailbutton{
+	margin-left: 0;
+	color: white;
+	font-size: 15pt;
+}
+.mailbutton a{
+	text-decoration: none;
+}
+
 .inputValue{
 	padding-left: 10px;
 	display: inline-block;
