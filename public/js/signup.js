@@ -77,9 +77,8 @@ $(function(){
 	});
 
 
-	$("#ycode").hide();
 
-	$("#verifyEmail").click(function(){
+	$("#signupButton").click(function(){
 		$email = $(this).parents("#signupForm").find("#signupEmail");
 		if($(this).parents("#signupForm ul").children(':nth-child(2)').children(':nth-child(3)').hasClass('customtrue')){
 			var para = {email: $email.val()};
@@ -95,6 +94,7 @@ $(function(){
 			            alert(jqXHR.responseText);
 			        }
 			    });
+
 		}else{
 			$email.popover('show');
 		}
@@ -109,3 +109,5 @@ $(function(){
 		// 	$email.popover('show');
 		// }
 	});
+
+});

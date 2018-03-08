@@ -15,6 +15,12 @@ var UserSchema = mongoose.Schema({
 	},
 	email: {
 		type: String
+	},
+	active:{
+		type: Boolean
+	},
+	tempHashLink: {
+		type: String
 	}
 });
 
@@ -46,3 +52,13 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
     	callback(null, isMatch);
 	});
 }
+
+module.exports.setTempHashLink = function(newUser, callback){
+	console.log(newUser);
+	bcrypt.hash(newUser.password, 10, function(err, hash) {
+  		var id = newUser._id;
+  		var query = {$set : {tempHashLink : hash}};
+  		User.update({_id: id}, query, callback(err, hash));
+	});
+}
+

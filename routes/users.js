@@ -4,8 +4,8 @@ var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../model/user');
 var nodemailer = require('nodemailer');
-
-
+var url = require('url');
+var queryString = require('query-string');
 router.get('/login', function(req, res){
 	res.render('login');
 });
@@ -36,17 +36,54 @@ router.post('/signup', function(req, res){
 		var newUser = new User({
 			email:email,
 			username: username,
-			password: password
+			password: password,
+			active: false
 		});
 
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
-			//console.log(user);
+			var id = user._id;
+		    var host=req.get('host');
+		    //console.log(user);
+		    var link;
+		    User.setTempHashLink(user, function(err, hash){
+		    	if(err){
+		    		link="http://"+req.get('host')+"/users/login";
+		    		console.log('Error when creating the hash link.')
+		    	}else{
+		    		link="http://"+req.get('host')+"/users/verify?id="+hash; // set the random hash link for verification
+				 	
+				 	let htmlContent = '<b>Please click the following Url to verify your email</b>'
+					    	+'<br><a href='+link+'>link</a>'
+					    	+'<br><b>Or you can copy paste the following url</b><br><b>'+link+'</b>'; // html body
+					
+					let mailOptions = {
+					    from: '"MyOP👻" <shunkaiz1997@gmail.com>', // sender address
+					    to: email, // list of receivers
+					    subject: 'Hello ✔', // Subject line
+					    text: 'Is this the email address you want to register?', // plain text body
+					    html: htmlContent // html body
+					};	
+					smtpTransport.sendMail(mailOptions, function(error, info){
+					    if (error) {
+					        return console.log(error);
+					    }
+					    console.log('Message sent: %s', info.messageId);
+					    // Preview only available when sending through an Ethereal account
+					    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+					    res.end('{"success" : "Updated Successfully", "status" : 200}');
+				    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+				    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou... 
+					});					    		
+		    	}
+		    });
+
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
 
-		res.redirect('/users/login');
+		res.redirect('/users/login');	
+
 	}
 });
 
@@ -114,18 +151,26 @@ let smtpTransport = nodemailer.createTransport({
 
 
 
-
-
 router.get('/email', function(req, res){
 	var mailAddress = req.query.email;
-	console.log(mailAddress);
 	// setup email data with unicode symbols
+	// set the random hash link for verification
+    var host=req.get('host');
+    console.log(req.query.user);
+    User.setTempHashLink(req.query.user, function(err, hash){
+    	if(err){
+    		console.log('Error when creating the hash link.')
+    	}else{
+    		var link="http://"+req.get('host')+"/verify?id="+hash;
+    	}
+    });
+ 
 	let mailOptions = {
-	    from: '"Fred Foo 👻" <shunkaiz1997@gmail.com>', // sender address
+	    from: '"MyOP👻" <shunkaiz1997@gmail.com>', // sender address
 	    to: mailAddress, // list of receivers
 	    subject: 'Hello ✔', // Subject line
-	    text: 'Hello world?', // plain text body
-	    html: '<b>Hello world?</b>' // html body
+	    text: 'Is this the email address you want to register?', // plain text body
+	    html: '<b>Please click the following Url to verify your email</b><br><a href=${link}>link</a>' // html body
 	};	
 	smtpTransport.sendMail(mailOptions, function(error, info){
 	    if (error) {
@@ -138,7 +183,7 @@ router.get('/email', function(req, res){
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou... 
 	});
-	
+	res.redirect('/users/login');
 });
 
 module.exports = router;

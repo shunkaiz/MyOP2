@@ -22,7 +22,9 @@
     "passport-http": "*",
     "passport-local": "*",
     "path": "^0.12.7",
-    "tether": "^1.4.3"
+    "query-string": "^5.1.0",
+    "tether": "^1.4.3",
+    "url": "^0.11.0"
   },
   "devDependencies": {},
   "scripts": {
