@@ -42,49 +42,49 @@ router.post('/signup', function(req, res){
 		});
 
 		User.createUser(newUser, function(err, user){
-			if(err) throw err;
-			var id = user._id;
-		    var host=req.get('host');
-		    //console.log(user);
-		    var link;
-		    User.setTempHashLink(user, function(err, hash){
-		    	if(err){
-		    		link="http://"+req.get('host')+"/users/login";
-		    		console.log('Error when creating the hash link.');
-		    	}else{
-		    		link="http://"+req.get('host')+"/users/verify?id="+hash; // set the random hash link for verification
-				 	
-				 	let htmlContent = '<b>Please click the following Url to verify your email</b>'
-					    	+'<br><a href='+link+'>link</a>'
-					    	+'<br><b>Or you can copy paste the following url</b><br><b>'+link+'</b>'; // html body
-					
-					let mailOptions = {
-					    from: '"MyOP👻" <shunkaiz1997@gmail.com>', // sender address
-					    to: email, // list of receivers
-					    subject: 'Hello ✔', // Subject line
-					    text: 'Is this the email address you want to register?', // plain text body
-					    html: htmlContent // html body
-					};	
-					smtpTransport.sendMail(mailOptions, function(error, info){
-					    if (error) {
-					        return console.log(error);
-					    }
-					    console.log('Message sent: %s', info.messageId);
-					    // Preview only available when sending through an Ethereal account
-					    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-					    res.end('{"success" : "Updated Successfully", "status" : 200}');
-				    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-				    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou... 
-					});					    		
-		    	}
-		    });
-
+			if(err){
+				req.flash('error_msg', 'The user already exists');
+				res.redirect('/users/signup');
+			}else{
+				var id = user._id;
+				var host=req.get('host');
+				//console.log(user);
+				var link;
+				User.setTempHashLink(user, function(err, hash){
+					if(err){
+						link="http://"+req.get('host')+"/users/login";
+						console.log('Error when creating the hash link.');
+					}else{
+						link="http://"+req.get('host')+"/users/verify?id="+hash; // set the random hash link for verification
+						
+						let htmlContent = '<b>Please click the following Url to verify your email</b>'
+								+'<br><a href='+link+'>link</a>'
+								+'<br><b>Or you can copy paste the following url</b><br><b>'+link+'</b>'; // html body
+						
+						let mailOptions = {
+							from: '"MyOP👻" <shunkaiz1997@gmail.com>', // sender address
+							to: email, // list of receivers
+							subject: 'Hello ✔', // Subject line
+							text: 'Is this the email address you want to register?', // plain text body
+							html: htmlContent // html body
+						};	
+						smtpTransport.sendMail(mailOptions, function(error, info){
+							if (error) {
+								return console.log(error);
+							}
+							console.log('Message sent: %s', info.messageId);
+							// Preview only available when sending through an Ethereal account
+							console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+							res.end('{"success" : "Updated Successfully", "status" : 200}');
+						// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+						// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou... 
+						});		
+						req.flash('success_msg', 'You are registered and can now login');
+						res.redirect('/users/login');				    		
+					}
+				});
+			}
 		});
-
-		req.flash('success_msg', 'You are registered and can now login');
-
-		res.redirect('/users/login');	
-
 	}
 });
 
@@ -156,7 +156,7 @@ router.get('/verify', function(req, res){
 		if(!user){
 			console.log('no user found');
 		}else{
-			console.log('activated the user');
+			console.log('user activated');
 			res.redirect('/');
 		}
 	});
