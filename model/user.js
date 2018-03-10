@@ -7,7 +7,9 @@ var ObjectId = require('mongodb').ObjectId;
 var UserSchema = mongoose.Schema({
 	username: {
 		type: String,
-		index:true
+		index:true,
+		unique:true,
+		sparse:true
 	},
 	password: {
 		type: String
@@ -89,6 +91,6 @@ module.exports.activateUser = function(user, callback){
 		User.findOneAndUpdate(query, deleteQuery, function(err, user){
 			if(err) throw  err;
 			callback(err, user);
-		}
+		});
 	});
 }
