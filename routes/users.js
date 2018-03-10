@@ -37,7 +37,8 @@ router.post('/signup', function(req, res){
 			email:email,
 			username: username,
 			password: password,
-			active: false
+			active: false,
+			tempHashLink : 'illegal'
 		});
 
 		User.createUser(newUser, function(err, user){
@@ -49,7 +50,7 @@ router.post('/signup', function(req, res){
 		    User.setTempHashLink(user, function(err, hash){
 		    	if(err){
 		    		link="http://"+req.get('host')+"/users/login";
-		    		console.log('Error when creating the hash link.')
+		    		console.log('Error when creating the hash link.');
 		    	}else{
 		    		link="http://"+req.get('host')+"/users/verify?id="+hash; // set the random hash link for verification
 				 	
@@ -148,43 +149,19 @@ let smtpTransport = nodemailer.createTransport({
     }
 });
 
-
-
-
-router.get('/email', function(req, res){
-	var mailAddress = req.query.email;
-	// setup email data with unicode symbols
-	// set the random hash link for verification
-    var host=req.get('host');
-    console.log(req.query.user);
-    User.setTempHashLink(req.query.user, function(err, hash){
-    	if(err){
-    		console.log('Error when creating the hash link.')
-    	}else{
-    		var link="http://"+req.get('host')+"/verify?id="+hash;
-    	}
-    });
- 
-	let mailOptions = {
-	    from: '"MyOP👻" <shunkaiz1997@gmail.com>', // sender address
-	    to: mailAddress, // list of receivers
-	    subject: 'Hello ✔', // Subject line
-	    text: 'Is this the email address you want to register?', // plain text body
-	    html: '<b>Please click the following Url to verify your email</b><br><a href=${link}>link</a>' // html body
-	};	
-	smtpTransport.sendMail(mailOptions, function(error, info){
-	    if (error) {
-	        return console.log(error);
-	    }
-	    console.log('Message sent: %s', info.messageId);
-	    // Preview only available when sending through an Ethereal account
-	    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-	    res.end('{"success" : "Updated Successfully", "status" : 200}');
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou... 
+router.get('/verify', function(req, res){
+	User.checkHashLink(req.query.id, function(err, user){
+		console.log(req.query.id);
+		if(err) throw err;
+		if(!user){
+			console.log('no user found');
+		}else{
+			console.log('activated the user');
+			res.redirect('/');
+		}
 	});
-	res.redirect('/users/login');
 });
+
 
 module.exports = router;
 
