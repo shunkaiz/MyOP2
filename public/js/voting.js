@@ -10,7 +10,7 @@ $(function(){
 			type: "GET",
 			data: para,
 			success(msg){
-				alert(msg);
+				if(msg)	alert(msg);
 			}
 		});		
 	});

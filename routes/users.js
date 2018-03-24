@@ -14,6 +14,7 @@ router.get('/signup', function(req, res){
 	res.render('signup');
 });
 
+
 //logout user	
 router.get('/logout', function(req, res){
 	req.logout();
@@ -22,6 +23,7 @@ router.get('/logout', function(req, res){
 
 	res.redirect('/');
 });
+
 
 //signup user
 router.post('/signup', function(req, res){
@@ -134,8 +136,8 @@ passport.authenticate('local', {failureRedirect:'/users/login',failureFlash:true
 	});
 
 
-//verify mail 
 
+// verify mail 
 // create reusable transporter object using the default SMTP transport
 let smtpTransport = nodemailer.createTransport({
     host: 'smtp.gmail.com',

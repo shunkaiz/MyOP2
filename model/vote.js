@@ -6,8 +6,6 @@ var VoteSchema = mongoose.Schema({
 	username: {
 		type: String,
 		index:true,
-		unique:true,
-		sparse:true
 	},
 	character: {
 		type: String,
@@ -15,13 +13,13 @@ var VoteSchema = mongoose.Schema({
 		unique: true
 	},
 	timeStamp: {
-		type : String
+		type : Date
 	}
 });
 
 
 var Vote = module.exports = mongoose.model('vote', VoteSchema);
 
-mongoose.exports.createVote = function(newVote, callback){
-
+module.exports.addVote = function(newVote, callback){
+	newVote.save(callback);
 }
