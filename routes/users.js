@@ -14,7 +14,16 @@ router.get('/signup', function(req, res){
 	res.render('signup');
 });
 
-//signup part
+//logout user	
+router.get('/logout', function(req, res){
+	req.logout();
+
+	req.flash('success_msg', 'You have been logged out');
+
+	res.redirect('/');
+});
+
+//signup user
 router.post('/signup', function(req, res){
 	var email = req.body.email;
 	var username = req.body.username;
@@ -47,12 +56,10 @@ router.post('/signup', function(req, res){
 				res.redirect('/users/signup');
 			}else{
 				var id = user._id;
-				var host=req.get('host');
-				//console.log(user);
+				var host = req.get('host');
 				var link;
 				User.setTempHashLink(user, function(err, hash){
 					if(err){
-						link="http://"+req.get('host')+"/users/login";
 						console.log('Error when creating the hash link.');
 					}else{
 						link="http://"+req.get('host')+"/users/verify?id="+hash; // set the random hash link for verification
@@ -123,17 +130,8 @@ passport.deserializeUser(function(id, done) {
 router.post('/login',
 passport.authenticate('local', {failureRedirect:'/users/login',failureFlash:true}),
 	function(req, res){
-		//console.log(req.user);
 		res.redirect('/');
 	});
-
-router.post('/logout', function(req, res){
-	req.logout();
-
-	req.flash('success_msg', 'You are logged out');
-
-	res.redirect('/');
-});
 
 
 //verify mail 
@@ -149,14 +147,16 @@ let smtpTransport = nodemailer.createTransport({
     }
 });
 
+//verify email address
 router.get('/verify', function(req, res){
 	User.checkHashLink(req.query.id, function(err, user){
-		console.log(req.query.id);
 		if(err) throw err;
 		if(!user){
-			console.log('no user found');
+			//console.log('no user found');
+			req.flash('error_msg', 'No user has been found');
 		}else{
-			console.log('user activated');
+			//console.log('user activated');
+			req.flash('success_msg', 'User has been activated');
 			res.redirect('/');
 		}
 	});

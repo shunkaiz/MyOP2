@@ -59,24 +59,17 @@ module.exports.setTempHashLink = function(newUser, callback){
 	bcrypt.hash(newUser.password, 10, function(err, hash) {  		
   		var username = newUser.username;
   		var query = {username: username};
-  		User.findOneAndUpdate(query, { tempHashLink: hash},{new: true, upsert:true}, function(err, user){
-  			//console.log(user.tempHashLink);
+  		User.findOneAndUpdate(query, { tempHashLink: hash},{new: true}, function(err, user){
   			callback(err, hash)
-  		});
-  		// User.findOne(query, function(err, user){
-  		// 	console.log('after update' + user.tempHashLink);
-  		// });
-  		
+  		}); 		
 	});
 }
 
 module.exports.checkHashLink = function(hash, callback){
-	console.log(hash);
 	var query = {tempHashLink: hash};
 	User.findOne(query, function(err, user){
 		if(err) throw err;
 		else if(!user) return;
-		console.log('find user' + user.username);
 		User.activateUser(user, callback);
 	});
 }
@@ -85,7 +78,8 @@ module.exports.activateUser = function(user, callback){
 	var username = user.username;
 	var query = {username, username};
 	var activeQuery = {$set : {active : true}};
-	var deleteQuery = {$unset : {tempHashLink : ''}};
+	// empty tempHashLink once the user is validated
+	var deleteQuery = {$unset : {tempHashLink : ''}};   
 	User.findOneAndUpdate(query, activeQuery, function(err, user){
 		if(err) throw err;
 		User.findOneAndUpdate(query, deleteQuery, function(err, user){

@@ -10,3 +10,7 @@
 .intro{
 	height: 40px;
 }
+.characterName{
+	font-size: 20pt;
+	font-weight: 600;
+}

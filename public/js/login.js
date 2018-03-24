@@ -63,33 +63,4 @@ $(function(){
 	}).focus(function(){
 		$(this).popover('show');
 	});
-
-
-	// $("#loginSubmit").click(function(){
-	// 	event.preventDefault();	
-	// 	if(!$("#email2").val() || !$("#password2").val()){
-	// 		alert("Username or Password cannot be empty!");
-	// 	}else{
-		
-			
-	//    		/* php post method*/
-	// 		$.post('../myop/php/user-verify.php', $("#form2").serialize(), function(response) {
-	// 		   	//console.log(response.name);
-	// 		   	if(response.name){
-	// 		   		$("#myModa2").modal('hide');
-	// 		   		$("#signUp").hide();
-	// 		   		$("#signIn").hide();
-	// 		   		$("#wel").show();
-	// 		   		$(".navbar-right").find(".dropdown").show();
-	// 		   		$(".user-sm").html(response.name);
-			   		
-	// 		   	}else{
-	// 		   		alert("Incorrect Username or Password!");
-	// 		   		$("#email2").val("");
-	// 		   		$("#password2").val("");
-	// 		   	}		
-	// 		}, "json");
-	// 	}
-		
-	//    	});	
 });

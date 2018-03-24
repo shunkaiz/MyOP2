@@ -78,36 +78,36 @@ $(function(){
 
 
 
-	$("#signupButton").click(function(){
-		$email = $(this).parents("#signupForm").find("#signupEmail");
-		if($(this).parents("#signupForm ul").children(':nth-child(2)').children(':nth-child(3)').hasClass('customtrue')){
-			var para = {email: $email.val()};
-			$.ajax({
-			        url: '/users/email',
-			        dataType: "JSON",
-			        type: "GET",
-			        data: para,
-			        success: function (returl) {
-			            alert('email sent');
-			        },
-			        error: function (jqXHR, responseText, textStatus) {
-			            alert(jqXHR.responseText);
-			        }
-			    });
+	// $("#signupButton").click(function(){
+	// 	$email = $(this).parents("#signupForm").find("#signupEmail");
+	// 	if($(this).parents("#signupForm ul").children(':nth-child(2)').children(':nth-child(3)').hasClass('customtrue')){
+	// 		var para = {email: $email.val()};
+	// 		$.ajax({
+	// 		        url: '/users/email',
+	// 		        dataType: "JSON",
+	// 		        type: "GET",
+	// 		        data: para,
+	// 		        success: function (returl) {
+	// 		            alert('email sent');
+	// 		        },
+	// 		        error: function (jqXHR, responseText, textStatus) {
+	// 		            alert(jqXHR.responseText);
+	// 		        }
+	// 		    });
 
-		}else{
-			$email.popover('show');
-		}
-		// if($(this).parents("#form1").find("#emaili").children("span").last().hasClass("customtrue")){
-		// 	$(".ycode-box").hide();
-		// 	$("#ycode").show();
-		// 	var $address = $email.val();
-		// 	$.post("../myop/php/email-verify.php", {to: $address}, function(data){
-		// 		$ycode = data;
-		// 	});
-		// }else{
-		// 	$email.popover('show');
-		// }
-	});
+	// 	}else{
+	// 		$email.popover('show');
+	// 	}
+	// 	// if($(this).parents("#form1").find("#emaili").children("span").last().hasClass("customtrue")){
+	// 	// 	$(".ycode-box").hide();
+	// 	// 	$("#ycode").show();
+	// 	// 	var $address = $email.val();
+	// 	// 	$.post("../myop/php/email-verify.php", {to: $address}, function(data){
+	// 	// 		$ycode = data;
+	// 	// 	});
+	// 	// }else{
+	// 	// 	$email.popover('show');
+	// 	// }
+	// });
 
 });

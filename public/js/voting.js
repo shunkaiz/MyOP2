@@ -1,38 +1,18 @@
 $(function(){
 	
-	$button = $(".caption").find("a");
-	$button.click(function(){
-		if($(this).text()!= "Statistics"){
-			$candidate = $(this).parents(".caption").find("h3").text(); 
-			$user = $(".user-sm").text(); 
-			$button.each(function(){
-				$button.text("Statistics");
-			});
-			$.post('../myop/php/voting.php', {name: $candidate, user: $user}, function(data){
-				//alert(data); 
-			});
-		}else{
-			$("#modal_stats").modal();
-			if($("#modal_stats").find(".modal-body").children().length<1){
-				var ctx = createCanvas("graphDiv1");
-				var graph = new BarGraph(ctx);
-				graph.maxValue = 0;
-				graph.margin = 20;
-				graph.colors = ["#49a0d8", "#d353a0", "#ffc527", "#df4c27"];
-				
-				$.post('../myop/php/getVotingData.php',function(data){
-					//console.log(data);
-					graph.xAxisLabelArr = [data[0].candidate, data[1].candidate, data[2].candidate, 
-					data[3].candidate, data[4].candidate, data[5].candidate];
-					graph.update([data[0].votes, data[1].votes, data[2].votes, data[3].votes, data[4].votes, data[5].votes]);
-				}, "json");
-				/**
-				setInterval(function () {
-					graph.update([Math.random() * 30, Math.random() * 30, Math.random() * 30, Math.random() * 30]);
-				}, 1000);		
-				**/
-			}	
-		}
+	$('.vote').click(function(){
+		var name = $(this).parent().find('.characterName').text();
+		console.log(name);
+		var para = {characterName: name};
+		$.ajax({
+			url: '/vote',
+			dataType: "text",
+			type: "GET",
+			data: para,
+			success(msg){
+				alert(msg);
+			}
+		});		
 	});
 });
 

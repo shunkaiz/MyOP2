@@ -9,9 +9,9 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
-
+var votes = require('./routes/votes');
 // Init App
 var app = express();
 
@@ -74,9 +74,9 @@ app.use(function (req, res, next) {
 });
 
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
-
+app.use('/vote', votes);
 // Set Port
 app.set('port', (process.env.PORT || 3000));
 
