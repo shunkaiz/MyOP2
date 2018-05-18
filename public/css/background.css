@@ -1,0 +1,42 @@
+
+.body-bg{
+	margin: auto;
+	padding: 0;
+	position: relative;
+	height: 1200px;
+	overflow: hidden;
+}
+
+.bg-list{
+	padding: 0;
+	margin: 0;
+	height: 1100px;
+	position: absolute;
+
+}
+.bg-list ul{
+	padding: 0;
+	white-space: nowrap;
+	margin-bottom: 0;
+	display: flex;
+}
+.bg-controller ul li{
+	cursor: pointer;
+}
+.bg-list li{
+	list-style: none;
+	display: inline-block;
+	position: relative;
+	margin: 0;
+}
+.bg-list li img{
+	width: 1903px;
+}
+.bg-controller{
+	height: 30px;
+	position: relative;
+	padding-left: 20px;
+}
+.pager{
+	text-align: left;
+}
