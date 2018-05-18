@@ -16,7 +16,7 @@
     "handlebars": "^4.0.11",
     "mongodb": "^3.0.4",
     "mongoose": "^5.0.9",
-    "nodemailer": "*",
+    "nodemailer": "^4.6.4",
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "*",
     "passport-http": "*",
