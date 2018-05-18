@@ -72,6 +72,13 @@ app.use(function (req, res, next) {
   res.locals.user = req.user||null;
   next();
 });
+// global vars that prevent duplicate video plays
+app.get('/', (req, res, next)=>{
+  setTimeout(()=>{
+    app.locals.video_viewed = true;
+  }, 2000);
+  next();
+})
 
 
 app.use('/', index);

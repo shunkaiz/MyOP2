@@ -30,7 +30,6 @@ router.post('/signup', function(req, res){
 	var email = req.body.email;
 	var username = req.body.username;
 	var password = req.body.password;
-	//console.log(username);
 	// Validation
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
@@ -102,12 +101,12 @@ router.post('/signup', function(req, res){
 passport.use(new LocalStrategy(
   function(username, password, done) {
   	User.getUserByUsername(username, function(err, user){
-  		if(err) throw err;
+  		if(err) return done(err);
   		if(!user){
   			return done(null, false, {message: 'Unknow User'});
   		}
   		User.comparePassword(password, user.password, function(err, isMatch){
-  			if(err) throw  err;
+  			if(err) return done(err);
   			if(isMatch){
   				return done(null, user);
   			}else{
@@ -118,11 +117,11 @@ passport.use(new LocalStrategy(
   	});
   }
 ));
-
+// serilize user id into session
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+	done(null, user.id);
 });
-
+// retrive user by id in session
 passport.deserializeUser(function(id, done) {
   User.getUserById(id, function(err, user) {
     done(err, user);

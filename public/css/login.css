@@ -1,8 +1,8 @@
-#loginForm ul{
-	padding:20px 50px 0px 0px;
+#loginForm{
+	padding:200px 50px 0px 0px;
 }
-#signupForm ul{
-	padding:20px 50px 0px 0px;
+#signupForm{
+	padding:200px 50px 0px 0px;
 }
 
 .inputContent{
@@ -62,9 +62,4 @@
 input{
 	padding: 9px 5px;
 }
-
-body{
-	padding-top: 100px;
-}
-
 
